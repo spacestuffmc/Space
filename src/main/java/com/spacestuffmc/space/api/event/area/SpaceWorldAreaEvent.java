@@ -18,6 +18,7 @@ import org.bukkit.event.HandlerList;
  *
  * @author Jack
  */
+@SuppressWarnings({"unused", "NullableProblems"})
 public class SpaceWorldAreaEvent extends AreaEvent implements Cancellable{
     private static final HandlerList handlers = new HandlerList();
     private static final long serialVersionUID = -316124428220245924L;
@@ -29,8 +30,8 @@ public class SpaceWorldAreaEvent extends AreaEvent implements Cancellable{
      * @param event Event
      * @param player Player
      */
-    public SpaceWorldAreaEvent(String event, Player player) {
-        super(event,player);
+    SpaceWorldAreaEvent(String event, Player player) {
+        super(player);
     }
     
     @Override

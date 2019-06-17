@@ -19,12 +19,13 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings({"unused", "NullableProblems"})
 public class SpaceEnterEvent extends SpaceWorldAreaEvent{
     // Variables
     private static final HandlerList handlers = new HandlerList();
     private static final long serialVersionUID = 8744071438699676557L;
-    private Location to = null;
-    private Location from = null;
+    private Location to;
+    private Location from;
 
     /**
      * Constructor for SpaceEnterEvent

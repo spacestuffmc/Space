@@ -17,6 +17,7 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings("unused")
 public class AreaEnterEvent extends AreaEvent {
     // Variables
     private static final HandlerList handlers = new HandlerList();
@@ -28,7 +29,7 @@ public class AreaEnterEvent extends AreaEvent {
      * @param player Player
      */
     public AreaEnterEvent(Player player) {
-        super("AreaEnterEvent", player);
+        super(player);
     }
     
     /**

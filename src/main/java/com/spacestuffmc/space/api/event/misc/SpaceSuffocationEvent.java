@@ -19,12 +19,13 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings({"unused", "NullableProblems"})
 public class SpaceSuffocationEvent extends Event implements Cancellable {
     // Variables
     private static final HandlerList handlers = new HandlerList();
     private static final long serialVersionUID = 8772846319048911013L;
     private boolean canceled = false;
-    private Player player = null;
+    private Player player;
 
     /**
      * Constructor for SpaceSuffocationEvent.
