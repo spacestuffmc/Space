@@ -9,32 +9,39 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.crystalcraftmc.crystalspace</groupId>
-    <artifactId>CrystalSpace</artifactId>
-    <version>1.10-R0.1-SNAPSHOT</version>
+    <groupId>com.spacestuffmc.space</groupId>
+    <artifactId>Space</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CrystalSpace</name>
+    <name>Space</name>
     <description>Bringing the unexplored frontier of space to Minecraft</description>
-    <url>https://github.com/CrystalCraftMC/CrystalSpace</url>
+    <url>https://github.com/spacestuffmc/Space</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <build.number>Unknown</build.number>
-        <main.class>com.crystalcraftmc.crystalspace.Space</main.class>
+        <main.class>com.spacestuffmc.space.SpaceMain</main.class>
     </properties>
 
     <dependencies>
+        <!-- SpigotAPI -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.10-R0.1-SNAPSHOT</version>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.13-R0.1-SNAPSHOT</version>
+        </dependency>
+        <!-- BukkitAPI -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.10-R0.1-SNAPSHOT</version>
-            <type>jar</type>
+            <version>1.13.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
