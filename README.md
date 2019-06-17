@@ -3,7 +3,7 @@
 ### Unofficial effort to revive the functionality of a powerful plugin
 
 
-**Space** is the fork of bSpace. CrystalSpace is a [Bukkit/Spigot](https://www.spigotmc.org/) plugin that is a terrain engine for Minecraft. With CrystalSpace, you will have a void world created and populated with planetoid objects, such as small planets, stars, satellites, and more. This plugin provides the barebones you need for your very own space-themed server.
+**Space** is the fork of bSpace. CrystalSpace is a [Bukkit/Spigot](https://www.spigotmc.org/) plugin that is a terrain engine for Minecraft. With Space, you will have a void world created and populated with planetoid objects, such as small planets, stars, satellites, and more. This plugin provides the barebones you need for your very own space-themed server.
 
 I decided to make this a long-term project for my own server to not only use on my own server, but to recreate one of the most amazing gametypes known in world of non-modded Minecraft servers.
 
