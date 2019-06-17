@@ -26,7 +26,7 @@ public class SpaceHelpCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceHelpCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceHelpCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 

@@ -23,6 +23,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -32,7 +33,7 @@ import java.util.logging.Level;
  */
 public class SpaceEnterCommand extends SpaceCommand {
     // Variables
-    public static Map<Player, Location> exitDest = new HashMap<Player, Location>();
+    public static Map<Player, Location> exitDest = new HashMap<>();
 
     /**
      * Constructor of SpaceEnterCommand.
@@ -41,7 +42,7 @@ public class SpaceEnterCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceEnterCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceEnterCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 
@@ -85,7 +86,7 @@ public class SpaceEnterCommand extends SpaceCommand {
                     player.sendMessage(ChatColor.RED + LangHandler.getWorldNotFoundMessage());
                     return;
                 }
-                if (!WorldHandler.isSpaceWorld(Bukkit.getServer().getWorld(this.getArgs()[1]))) {
+                if (!WorldHandler.isSpaceWorld(Objects.requireNonNull(Bukkit.getServer().getWorld(this.getArgs()[1])))) {
                     player.sendMessage(ChatColor.RED + LangHandler.getWorldNotSpaceMessage());
                     return;
                 }
@@ -98,7 +99,7 @@ public class SpaceEnterCommand extends SpaceCommand {
                 if (SpaceExitCommand.enterDest.containsKey(player)) {
                     location = SpaceExitCommand.enterDest.get(player);
                 } else {
-                    location = Bukkit.getServer().getWorld(getArgs()[1]).getSpawnLocation();
+                    location = Objects.requireNonNull(Bukkit.getServer().getWorld(getArgs()[1])).getSpawnLocation();
                 }
                 MessageHandler.debugPrint(Level.INFO, "Teleported player '" + player.getName() + "' to space.");
                 player.teleport(location, TeleportCause.COMMAND);

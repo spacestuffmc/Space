@@ -30,7 +30,7 @@ public abstract class SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         this.plugin = plugin;
         this.sender = sender;
         this.args = args;
@@ -56,7 +56,7 @@ public abstract class SpaceCommand {
      * 
      * @return the sender
      */
-    public CommandSender getSender() {
+    CommandSender getSender() {
         return sender;
     }
 
@@ -65,7 +65,7 @@ public abstract class SpaceCommand {
      * 
      * @return the args
      */
-    public String[] getArgs() {
+    String[] getArgs() {
         return args;
     }
 }

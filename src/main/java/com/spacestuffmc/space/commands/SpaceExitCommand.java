@@ -32,7 +32,7 @@ import java.util.logging.Level;
  */
 public class SpaceExitCommand extends SpaceCommand {
     // Variables
-    public static Map<Player, Location> enterDest = new HashMap<Player, Location>();
+    static Map<Player, Location> enterDest = new HashMap<>();
 
     /**
      * Constructor of SpaceExitCommand.
@@ -41,7 +41,7 @@ public class SpaceExitCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceExitCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceExitCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 
@@ -59,20 +59,16 @@ public class SpaceExitCommand extends SpaceCommand {
                     location = SpaceEnterCommand.exitDest.get(player);
                     MessageHandler.debugPrint(Level.INFO, "Teleported player '" + player.getName() + "' out of space.");
                     player.teleport(location);
-                    return;
                 } else {
                     SpaceEnterCommand.exitDest.put(player, Bukkit.getServer().getWorlds().get(0).getSpawnLocation());
                     getSender().sendMessage(ChatColor.RED + LangHandler.getNoExitFoundMessage(1));
                     getSender().sendMessage(ChatColor.RED + LangHandler.getNoExitFoundMessage(2));
-                    return;
                 }
             } else {
                 MessageHandler.sendNoPermissionMessage(player);
-                return;
             }
         } else {
             player.sendMessage(ChatColor.RED + LangHandler.getNotInSpaceMessage());
-            return;
         }
     }
 }

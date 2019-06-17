@@ -28,7 +28,7 @@ public class SpaceAboutCommand extends SpaceCommand {
      * @param sender the command sender
      * @param args command arguments
      */
-    public SpaceAboutCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceAboutCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 

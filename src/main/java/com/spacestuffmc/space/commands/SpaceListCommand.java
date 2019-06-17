@@ -36,7 +36,7 @@ public class SpaceListCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceListCommand(SpaceMain plugin, CommandSender sender, String[] args) {
+    SpaceListCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 
@@ -54,7 +54,7 @@ public class SpaceListCommand extends SpaceCommand {
             return;
         }
         getSender().sendMessage(ChatColor.GOLD + SpaceMain.getPrefix() + " " + LangHandler.getListOfSpaceMessage());
-        List<String> spaceWorlds = new ArrayList<String>();
+        List<String> spaceWorlds = new ArrayList<>();
         for (World world : WorldHandler.getSpaceWorlds()) {
             if (world == null) {
                 MessageHandler.debugPrint(Level.SEVERE, "world is null in SpaceListCommand! :(");

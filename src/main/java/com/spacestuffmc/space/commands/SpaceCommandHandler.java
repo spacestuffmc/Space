@@ -24,6 +24,7 @@ import java.util.logging.Level;
  * 
  * @author iffa
  */
+@SuppressWarnings({"NullableProblems", "unused"})
 public class SpaceCommandHandler implements CommandExecutor {
     // Variables
     private SpaceMain plugin;
