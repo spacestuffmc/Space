@@ -47,7 +47,7 @@ public class SpaceCommandHandler implements CommandExecutor {
      * 
      * @return True if no usage information should be sent, i.e command was successfull
      */
-    public boolean onCommand(CommandSender sender, Command command, String label, String args[]) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         /* Notify listeners start */
         SpaceCommandEvent e = new SpaceCommandEvent("SpaceCommandEvent", sender, args);
         if (e.isCancelled()) {

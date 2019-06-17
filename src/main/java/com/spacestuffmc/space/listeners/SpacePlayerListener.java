@@ -120,9 +120,7 @@ public class SpacePlayerListener implements Listener {
         if(SpaceSuffocationListener.stopSuffocating(event.getPlayer())){
             MessageHandler.debugPrint(Level.INFO, "Cancelled suffocation task for player '" + event.getPlayer().getName() + "'. (reason: left server)");
         }
-       if (inArea.containsKey(event.getPlayer())) {
-           inArea.remove(event.getPlayer());
-       }
+        inArea.remove(event.getPlayer());
     }
     
     /**

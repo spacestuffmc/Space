@@ -37,10 +37,7 @@ public class SpacePlayerHandler {
      * @return true if the player has permission
      */
     public static boolean hasPermission(String permission, Player player) {
-        if (player.hasPermission(permission)) {
-            return true;
-        }
-        return false;
+        return player.hasPermission(permission);
     }
 
     /**
@@ -211,14 +208,10 @@ public class SpacePlayerHandler {
             return false;
         }
         if (suit == SuitCheck.FULL_SUIT) {
-            if(hasSuit(player)){
-                return false;
-            }          
+            return !hasSuit(player);
         }
         else if (suit == SuitCheck.HELMET_ONLY) {
-            if(hasHelmet(player)){
-                return false;
-            }
+            return !hasHelmet(player);
         } 
         return true;
     }

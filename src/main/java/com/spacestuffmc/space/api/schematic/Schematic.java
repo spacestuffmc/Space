@@ -41,8 +41,8 @@ public class Schematic {
      * @param entities Entities
      * @param tileEntities Tile entities
      */
-    public Schematic(String name, 
-            byte[] blocks, byte[] data, short width, short height, short length, 
+    public Schematic(String name,
+            byte[] blocks, byte[] data, short width, short height, short length,
             List<Tag> entities, List<Tag> tileEntities) {
         this.name = name;
         this.blocks = blocks;

@@ -12,6 +12,8 @@ package com.spacestuffmc.space.api;
 import com.spacestuffmc.space.SpaceMain;
 import com.spacestuffmc.space.config.SpaceConfig;
 
+import java.util.Objects;
+
 /**
  * Useful methods to get localized strings from lang.yml. Try keeping params to a minimum!
  * Oh, and you can use this if you ever need Space's default strings :).
@@ -20,6 +22,7 @@ import com.spacestuffmc.space.config.SpaceConfig;
  * 
  * @author iffa
  */
+@SuppressWarnings("unused")
 public class SpaceLangHandler {
     /* General Strings */
 
@@ -29,7 +32,7 @@ public class SpaceLangHandler {
      * @return Localized enabled message
      */
     public static String getEnabledMessage() {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.enabled").replace("{version}", SpaceMain.getVersion());
+        return Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.enabled")).replace("{version}", SpaceMain.getVersion());
     }
 
     /**
@@ -38,7 +41,7 @@ public class SpaceLangHandler {
      * @return Localized disabled message
      */
     public static String getDisabledMessage() {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.disabled").replace("{version}", SpaceMain.getVersion());
+        return Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.disabled")).replace("{version}", SpaceMain.getVersion());
     }
 
     /**
@@ -58,7 +61,7 @@ public class SpaceLangHandler {
      * @return Localized config loaded message
      */
     public static String getConfigLoadedMessage(SpaceConfig.ConfigFile configfile) {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.configload").replace("{configfile}", configfile.getName());
+        return Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.configload")).replace("{configfile}", configfile.getName());
     }
 
     /**
@@ -87,7 +90,7 @@ public class SpaceLangHandler {
      * @return Localized message
      */
     public static String getConfigUpdateFailureMessage(Exception ex) {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.configupdatefailure").replace("{exception}", ex.getMessage());
+        return Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.configupdatefailure")).replace("{exception}", ex.getMessage());
     }
 
     /* Command Strings */
@@ -117,7 +120,7 @@ public class SpaceLangHandler {
      * @return Localized exit not found message
      */
     public static String getNoExitFoundMessage(int line) {
-        String[] lines = SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("commands.exitnotfound").split("\\r?\\n");
+        String[] lines = Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("commands.exitnotfound")).split("\\r?\\n");
         return line == 1 ? lines[0] : lines[1];
     }
 
@@ -184,7 +187,7 @@ public class SpaceLangHandler {
      * @return Localized id not found message
      */
     public static String getIdNotFoundMessage(String id) {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("other.idnotfound").replace("{idname}", id);
+        return Objects.requireNonNull(SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("other.idnotfound")).replace("{idname}", id);
     }
 
     /**

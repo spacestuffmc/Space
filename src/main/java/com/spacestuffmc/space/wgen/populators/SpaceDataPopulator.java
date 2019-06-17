@@ -74,10 +74,7 @@ public class SpaceDataPopulator extends BlockPopulator {
             if (this.y != other.y) {
                 return false;
             }
-            if (this.z != other.z) {
-                return false;
-            }
-            return true;
+            return this.z == other.z;
         }
 
         @Override

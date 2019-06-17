@@ -25,9 +25,7 @@ public class WorldHandler extends SpaceWorldHandler {
      * @param world World to remove
      */
     public static void removeSpaceWorld(World world) {
-        if (spaceWorldNames.contains(world.getName())) {
-            spaceWorldNames.remove(world.getName());
-        }
+        spaceWorldNames.remove(world.getName());
     }
     private WorldHandler() {
     }

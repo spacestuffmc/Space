@@ -92,10 +92,7 @@ public class SpaceWorldHandler {
      * @return true if the world is a space world
      */
     public static boolean isSpaceWorld(World world) {
-        if (spaceWorldNames.contains(world.getName())) {
-            return true;
-        }
-        return false;
+        return spaceWorldNames.contains(world.getName());
     }
 
     /**

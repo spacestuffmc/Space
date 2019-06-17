@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
+import static com.spacestuffmc.space.config.SpaceConfig.Defaults.DEBUGGING;
+
 /**
  * Static methods handle configuration.
  * External use only
@@ -51,8 +53,7 @@ public class SpaceConfigHandler {
      * @return true if debugging mode is enabled
      */
     public static boolean getDebugging() {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.CONFIG).getBoolean("debug", (Boolean) SpaceConfig.Defaults.DEBUGGING.getDefault());
-        //return SpaceConfig.getConfig(ConfigFile.CONFIG).getBoolean("debug", (Boolean) DEBUGGING.getDefault());
+        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.CONFIG).getBoolean("debug", (Boolean) DEBUGGING.getDefault());
     }
 
     /**
@@ -148,9 +149,8 @@ public class SpaceConfigHandler {
      * @return True if gravity enabled
      */
     public static List<World> getStopDrowningWorlds() {
-        @SuppressWarnings("unchecked")
         List<String> strings = SpaceConfig.getConfig(SpaceConfig.ConfigFile.CONFIG).getStringList("global.drowning.worlds");
-        List<World> worlds = new ArrayList<World>();
+        List<World> worlds = new ArrayList<>();
         for (String string : strings) {
             worlds.add(Bukkit.getWorld(string));
         }
@@ -271,7 +271,7 @@ public class SpaceConfigHandler {
     /**
      * Checks if asteroid generation is enabled for a world.
      *
-     * @param id
+     * @param id 1
      *
      * @return true if asteroid generation is enabled
      */

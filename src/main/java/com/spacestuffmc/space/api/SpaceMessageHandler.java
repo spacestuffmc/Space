@@ -22,6 +22,7 @@ import java.util.logging.Logger;
  * 
  * @author iffa
  */
+@SuppressWarnings("unused")
 public class SpaceMessageHandler {
     // Variables
     protected static final Logger log = Bukkit.getLogger();

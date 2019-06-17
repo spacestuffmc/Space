@@ -30,10 +30,11 @@ import java.util.logging.Level;
  * @author DrAgonmoray (original NBT loading code)
  * @author sk89q and other people who accidently a WE commit (schematic handling)
  */
+@SuppressWarnings("deprecation")
 public class SpaceSchematicHandler {
     // Variables
     public static File schematicFolder = new File("plugins" + File.separator + "Space" + File.separator + "schematics");
-    private static List<Schematic> schematics = new ArrayList<Schematic>();
+    private static List<Schematic> schematics = new ArrayList<>();
 
     /**
      * Gets the list of schematics loaded.
@@ -66,8 +67,8 @@ public class SpaceSchematicHandler {
      * @param blocksMap Blocks Map
      * @param tileEntitiesMap Tile Entities Map
      */
-    private static void buildSchematic(Location origin, 
-            Map<Location, Map<Material, MaterialData>> blocksMap, 
+    private static void buildSchematic(Location origin,
+            Map<Location, Map<Material, MaterialData>> blocksMap,
             Map<BlockVector, Map<String, Tag>> tileEntitiesMap) {
         
         // Variables
@@ -82,16 +83,17 @@ public class SpaceSchematicHandler {
 
             for (Material material : blocksMap.get(location).keySet()) {
                 world.getBlockAt(originX, originY, originZ).setType(material);
-                world.getBlockAt(originX, originY, originZ).setData(blocksMap.get(location).get(material).getData());
+                //TODO: require assistance - tow
+                world.getBlockAt(originX, originY, originZ).getBlockData(blocksMap.get(location).get(material).getData());
             }
         }
     }
-    
+
     /**
      * Loads all schematics from plugins/Space/schematics.
      */
     public static void loadSchematics() {
-        List<File> files = Arrays.asList(new File("plugins" + File.separator + "Space" + File.separator + "schematics").listFiles());
+        List<File> files = Arrays.asList(Objects.requireNonNull(new File("plugins" + File.separator + "Space" + File.separator + "schematics").listFiles()));
         if (files.isEmpty()) {
             return;
         }
@@ -143,20 +145,15 @@ public class SpaceSchematicHandler {
      * 
      * @param file Schematic file
      */
-    @SuppressWarnings("unchecked")
-    public static void loadSchematic(File file) {
+    private static void loadSchematic(File file) {
         try{
             FileInputStream fis = new FileInputStream(file);
             NBTInputStream nbt = new NBTInputStream(fis);
             Schematic schematic = loadSchematic(file.getName().replaceAll(".schematic", ""), nbt);
-            if (nbt != null) {
-                nbt.close();
-            }
-            if (fis != null) {
-                fis.close();
-            }
+            nbt.close();
+            fis.close();
             schematics.add(schematic);
-            MessageHandler.debugPrint(Level.INFO, "Added Schematic '" + file.getName() + "' to schematics list:\n" + schematic.getWidth() + "\n" + schematic.getHeight() + "\n" + schematic.getLength() + "\n" + schematic.getBlocks() + "\n" + schematic.getBlockData());
+            MessageHandler.debugPrint(Level.INFO, "Added Schematic '" + file.getName() + "' to schematics list:\n" + schematic.getWidth() + "\n" + schematic.getHeight() + "\n" + schematic.getLength() + "\n" + Arrays.toString(schematic.getBlocks()) + "\n" + Arrays.toString(schematic.getBlockData()));
         } catch (Exception e) {
             MessageHandler.print(Level.WARNING, "There was a problem while loading schematic file '" + file.getName() + "'! Are you sure it's a schematic: " + e.getMessage());
         }
@@ -182,33 +179,9 @@ public class SpaceSchematicHandler {
         }
         return expected.cast(tag);
     }
-/*
-    public static boolean isGZIP(File file) {
-        DataInputStream str = null;
-        try {
-            str = new DataInputStream(new GZIPInputStream(new FileInputStream(file)));
-            if ((str.readByte() & 0xFF) != NBTConstants.TYPE_COMPOUND) {
-                return false;
-            }
-            byte[] nameBytes = new byte[str.readShort() & 0xFFFF];
-            str.readFully(nameBytes);
-            String name = new String(nameBytes, NBTConstants.CHARSET);
-            return name.equals("Schematic");
-        } catch (IOException e) {
-            return false;
-        } finally {
-            if (str != null) {
-                try {
-                    str.close();
-                } catch (IOException ignore) {
-                    // blargh
-                }
-            }
-        }
-    }
-*/
+
     private static Map<BlockVector, Map<String, Tag>> getTileEntitiesMap(List<Tag> tileEntities){
-        Map<BlockVector, Map<String, Tag>> tileEntitiesMap = new HashMap<BlockVector, Map<String, Tag>>();
+        Map<BlockVector, Map<String, Tag>> tileEntitiesMap = new HashMap<>();
 
         for (Tag tag : tileEntities) {
             if (!(tag instanceof CompoundTag)) continue;
@@ -218,21 +191,25 @@ public class SpaceSchematicHandler {
             int y = 0;
             int z = 0;
 
-            Map<String, Tag> values = new HashMap<String, Tag>();
+            Map<String, Tag> values = new HashMap<>();
 
             for (Map.Entry<String, Tag> entry : t.getValue().entrySet()) {
-                if (entry.getKey().equals("x")) {
-                    if (entry.getValue() instanceof IntTag) {
-                        x = ((IntTag) entry.getValue()).getValue();
-                    }
-                } else if (entry.getKey().equals("y")) {
-                    if (entry.getValue() instanceof IntTag) {
-                        y = ((IntTag) entry.getValue()).getValue();
-                    }
-                } else if (entry.getKey().equals("z")) {
-                    if (entry.getValue() instanceof IntTag) {
-                        z = ((IntTag) entry.getValue()).getValue();
-                    }
+                switch (entry.getKey()) {
+                    case "x":
+                        if (entry.getValue() instanceof IntTag) {
+                            x = ((IntTag) entry.getValue()).getValue();
+                        }
+                        break;
+                    case "y":
+                        if (entry.getValue() instanceof IntTag) {
+                            y = ((IntTag) entry.getValue()).getValue();
+                        }
+                        break;
+                    case "z":
+                        if (entry.getValue() instanceof IntTag) {
+                            z = ((IntTag) entry.getValue()).getValue();
+                        }
+                        break;
                 }
 
                 values.put(entry.getKey(), entry.getValue());
@@ -245,18 +222,19 @@ public class SpaceSchematicHandler {
     }
     
     private static Map<Location, Map<Material, MaterialData>> getBlocksMap(Schematic schematic, Location origin){
-        Map<Location, Map<Material, MaterialData>> toRet = new HashMap<Location, Map<Material, MaterialData>>();
+        Map<Location, Map<Material, MaterialData>> toRet = new HashMap<>();
         for (int x = 0; x < schematic.getWidth(); ++x) {
             for (int y = 0; y < schematic.getHeight(); ++y) {
                 for (int z = 0; z < schematic.getLength(); ++z) {
                     int index = y * schematic.getWidth() * schematic.getLength() + z * schematic.getWidth() + x;
-                    Material block = Material.getMaterial(schematic.getBlocks()[index]);
+                    Material block = Material.getMaterial(String.valueOf(schematic.getBlocks()[index]));
                     MaterialData blockData = null;
                     try {
                         blockData = new MaterialData(block, schematic.getBlockData()[index]);
                     } catch (Exception ex) {
+                        ex.printStackTrace();
                     }
-                    Map<Material, MaterialData> tempMap = new EnumMap<Material, MaterialData>(Material.class);
+                    Map<Material, MaterialData> tempMap = new EnumMap<>(Material.class);
                     tempMap.put(block, blockData);
                     toRet.put(new Location(origin.getWorld(), x, y, z), tempMap);
                 }

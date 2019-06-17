@@ -19,11 +19,11 @@ public interface SpaceAddon {
     /**
      * Called when Space is enabled
     */
-    //public void onSpaceEnable();
+    void onSpaceEnable();
     
     /**
      * 
      * Called when Space is disabled
      */
-    public void onSpaceDisable();
+    void onSpaceDisable();
 }
