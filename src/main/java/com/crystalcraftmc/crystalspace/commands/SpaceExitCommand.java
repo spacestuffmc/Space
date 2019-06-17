@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.commands;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.handlers.LangHandler;
 import com.crystalcraftmc.crystalspace.handlers.MessageHandler;
 import com.crystalcraftmc.crystalspace.handlers.PlayerHandler;
@@ -41,7 +41,7 @@ public class SpaceExitCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceExitCommand(Space plugin, CommandSender sender, String[] args) {
+    public SpaceExitCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 

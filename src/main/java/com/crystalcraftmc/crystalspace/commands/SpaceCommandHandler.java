@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.commands;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.api.event.misc.SpaceCommandEvent;
 import com.crystalcraftmc.crystalspace.handlers.MessageHandler;
 import org.bukkit.command.Command;
@@ -26,14 +26,14 @@ import java.util.logging.Level;
  */
 public class SpaceCommandHandler implements CommandExecutor {
     // Variables
-    private Space plugin;
+    private SpaceMain plugin;
 
     /**
      * Constructor for SpaceCommandHandler.
      * 
      * @param plugin CrystalSpace instance
      */
-    public SpaceCommandHandler(Space plugin) {
+    public SpaceCommandHandler(SpaceMain plugin) {
         this.plugin = plugin;
     }
 

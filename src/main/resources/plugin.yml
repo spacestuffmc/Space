@@ -2,7 +2,7 @@
 # All developers/contributors are here!
 
 name: CrystalSpace
-main: com.crystalcraftmc.crystalspace.Space
+main: com.crystalcraftmc.crystalspace.SpaceMain
 version: 3.0.0-ALPHA-5
 authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198]
 website: https://github.com/CrystalCraftMC/CrystalSpace

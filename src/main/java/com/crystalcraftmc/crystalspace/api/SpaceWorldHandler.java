@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.api;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.handlers.ConfigHandler;
 import com.crystalcraftmc.crystalspace.handlers.MessageHandler;
 import com.crystalcraftmc.crystalspace.handlers.WorldHandler;
@@ -35,7 +35,7 @@ import java.util.logging.Level;
 public class SpaceWorldHandler {
     // Variables
     protected static List<String> spaceWorldNames = new ArrayList<String>();
-    private static Space plugin = (Space) Bukkit.getPluginManager().getPlugin("CrystalSpace");
+    private static SpaceMain plugin = (SpaceMain) Bukkit.getPluginManager().getPlugin("CrystalSpace");
     private static Map<World, Integer> forcenightId = new HashMap<World, Integer>();
 
     /**
@@ -102,7 +102,7 @@ public class SpaceWorldHandler {
      * Checks if a player is in a space world.
      * 
      * @param player Player to check
-     * @param world Space world
+     * @param world SpaceMain world
      * 
      * @return true if the player is in the specified space world
      */

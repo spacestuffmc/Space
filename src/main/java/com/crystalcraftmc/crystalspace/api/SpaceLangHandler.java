@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.api;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.config.SpaceConfig;
 
 /**
@@ -29,7 +29,7 @@ public class SpaceLangHandler {
      * @return Localized enabled message
      */
     public static String getEnabledMessage() {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.enabled").replace("{version}", Space.getVersion());
+        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.enabled").replace("{version}", SpaceMain.getVersion());
     }
 
     /**
@@ -38,7 +38,7 @@ public class SpaceLangHandler {
      * @return Localized disabled message
      */
     public static String getDisabledMessage() {
-        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.disabled").replace("{version}", Space.getVersion());
+        return SpaceConfig.getConfig(SpaceConfig.ConfigFile.LANG).getString("general.disabled").replace("{version}", SpaceMain.getVersion());
     }
 
     /**

@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.commands;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.handlers.LangHandler;
 import com.crystalcraftmc.crystalspace.handlers.MessageHandler;
 import com.crystalcraftmc.crystalspace.handlers.PlayerHandler;
@@ -36,7 +36,7 @@ public class SpaceListCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceListCommand(Space plugin, CommandSender sender, String[] args) {
+    public SpaceListCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 
@@ -53,7 +53,7 @@ public class SpaceListCommand extends SpaceCommand {
             getSender().sendMessage(ChatColor.RED + LangHandler.getNoSpaceLoaded());
             return;
         }
-        getSender().sendMessage(ChatColor.GOLD + Space.getPrefix() + " " + LangHandler.getListOfSpaceMessage());
+        getSender().sendMessage(ChatColor.GOLD + SpaceMain.getPrefix() + " " + LangHandler.getListOfSpaceMessage());
         List<String> spaceWorlds = new ArrayList<String>();
         for (World world : WorldHandler.getSpaceWorlds()) {
             if (world == null) {

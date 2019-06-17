@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.commands;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -26,7 +26,7 @@ public class SpaceHelpCommand extends SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceHelpCommand(Space plugin, CommandSender sender, String[] args) {
+    public SpaceHelpCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         super(plugin, sender, args);
     }
 

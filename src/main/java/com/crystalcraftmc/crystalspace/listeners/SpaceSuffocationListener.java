@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.listeners;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import com.crystalcraftmc.crystalspace.api.event.area.AreaEnterEvent;
 import com.crystalcraftmc.crystalspace.api.event.area.AreaLeaveEvent;
 import com.crystalcraftmc.crystalspace.api.event.area.SpaceEnterEvent;
@@ -36,14 +36,14 @@ import java.util.logging.Level;
 public class SpaceSuffocationListener implements Listener {
     // Variables
     public static Map<Player, Integer> taskid = new HashMap<Player, Integer>();
-    private static Space plugin;
+    private static SpaceMain plugin;
 
     /**
      * Constructor of SpaceSuffocationListener.
      * 
-     * @param plugin Space instance
+     * @param plugin SpaceMain instance
      */
-    public SpaceSuffocationListener(Space plugin) {
+    public SpaceSuffocationListener(SpaceMain plugin) {
         SpaceSuffocationListener.plugin = plugin;
     }
 

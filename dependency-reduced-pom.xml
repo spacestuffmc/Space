@@ -79,7 +79,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <main.class>com.crystalcraftmc.crystalspace.Space</main.class>
+    <main.class>com.crystalcraftmc.crystalspace.SpaceMain</main.class>
     <build.number>Unknown</build.number>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
