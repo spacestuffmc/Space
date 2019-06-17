@@ -5,8 +5,8 @@ name: Space
 main: SpaceMain
 version: 3.0.0-ALPHA-5
 authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198]
-website: https://github.com/CrystalCraftMC/Space
-jenkins-url: http://ci.crystalcraftmc.com/job/Space/
+website: https://github.com/SpaceStuffMC/Space
+jenkins-url: http://ci.SpaceStuffMC.com/job/Space/
 
 # Load on startup for bukkit.yml, and all that support
 load: startup

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 CrystalCraftMC
+ * Copyright (c) 2019 SpaceStuffMC
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -12,7 +12,7 @@ package com.spacestuffmc.space.wgen.planets;
 import com.spacestuffmc.space.config.SpaceConfig;
 import com.spacestuffmc.space.handlers.ConfigHandler;
 import com.spacestuffmc.space.handlers.MessageHandler;
-import com.crystalcraftmc.space.wgen.populators.*;
+import com.SpaceStuffMC.space.wgen.populators.*;
 import com.spacestuffmc.space.wgen.populators.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

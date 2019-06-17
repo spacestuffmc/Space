@@ -20,6 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -31,18 +32,18 @@ import java.util.logging.Level;
  * @author HACKhalo2
  * @author jflory7
  */
+@SuppressWarnings({"unused", "NullableProblems"})
 public class SpaceMain extends JavaPlugin {
     // Variables
     private static String prefix;
     private static String version;
     private static Map<Player, Location> locCache = null;
-    private static Map<Player, Boolean> jumpPressed = new HashMap<Player, Boolean>();
+    private static Map<Player, Boolean> jumpPressed = new HashMap<>();
     private final SpaceEntityListener entityListener = new SpaceEntityListener();
     private final SpaceWorldListener worldListener = new SpaceWorldListener();
     private final SpacePlayerListener playerListener = new SpacePlayerListener();
     private final SpaceSuffocationListener suffocationListener = new SpaceSuffocationListener(this);
     private PluginManager pm;
-    private SpaceCommandHandler sce = null;
 
     /**
      * Gets the jump pressed value. (ie = wtf is this)
@@ -132,8 +133,8 @@ public class SpaceMain extends JavaPlugin {
         //WorldHandler.loadSpaceWorlds();
 
         // Initializing the CommandExecutor for /space.
-        sce = new SpaceCommandHandler(this);
-        getCommand("space").setExecutor(sce);
+        SpaceCommandHandler sce = new SpaceCommandHandler(this);
+        Objects.requireNonNull(getCommand("space")).setExecutor(sce);
         MessageHandler.debugPrint(Level.INFO, "Initialized CommandExecutors.");
 
         // Checking if it should always be night in space worlds.
@@ -185,7 +186,7 @@ public class SpaceMain extends JavaPlugin {
     @Override
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
         boolean realID = true;
-        if (id == null || id.isEmpty() || id.length() == 0) {
+        if (id == null || id.isEmpty()) {
             realID = false;
         }
         if (realID) {

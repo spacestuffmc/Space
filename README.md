@@ -1,4 +1,4 @@
-#Space [![Build Status](https://travis-ci.org/CrystalCraftMC/CrystalSpace.svg)](https://travis-ci.org/CrystalCraftMC/CrystalSpace)
+#Space [![Build Status](https://travis-ci.org/SpaceStuffMC/CrystalSpace.svg)](https://travis-ci.org/SpaceStuffMC/CrystalSpace)
 
 ### Unofficial effort to revive the functionality of a powerful plugin
 
