@@ -19,6 +19,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.*;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -29,11 +30,12 @@ import java.util.logging.Level;
  * @author Sammy
  * @author kitskub
  */
+@SuppressWarnings({"unused", "ResultOfMethodCallIgnored", "JavaDoc"})
 public class SpaceConfig {
     // Variables
-    private static Map<ConfigFile, YamlConfiguration> config = new EnumMap<ConfigFile, YamlConfiguration>(ConfigFile.class);
-    private static Map<ConfigFile, File> fileMap = new EnumMap<ConfigFile, File>(ConfigFile.class);
-    private static Map<ConfigFile, Boolean> loaded = new EnumMap<ConfigFile, Boolean>(ConfigFile.class);
+    private static Map<ConfigFile, YamlConfiguration> config = new EnumMap<>(ConfigFile.class);
+    private static Map<ConfigFile, File> fileMap = new EnumMap<>(ConfigFile.class);
+    private static Map<ConfigFile, Boolean> loaded = new EnumMap<>(ConfigFile.class);
 
     /**
      * Gets the configuration file.
@@ -87,21 +89,13 @@ public class SpaceConfig {
      * 
      * @param configFile ConfigFile to load
      */
-    public static void loadConfig(ConfigFile configFile) {
-        fileMap.put(configFile, new File(Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder(), configFile.getNameWithLocation()));
+    private static void loadConfig(ConfigFile configFile) {
+        fileMap.put(configFile, new File(Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin("Space")).getDataFolder(), configFile.getNameWithLocation()));
         if (fileMap.get(configFile).exists()) {
             config.put(configFile, new YamlConfiguration());
             try {
                 config.get(configFile).load(fileMap.get(configFile));
-            } catch (FileNotFoundException ex) {
-                MessageHandler.print(Level.WARNING, ex.getMessage());
-                loaded.put(configFile, false);
-                return;
-            } catch (IOException ex) {
-                MessageHandler.print(Level.WARNING, ex.getMessage());
-                loaded.put(configFile, false);
-                return;
-            } catch (InvalidConfigurationException ex) {
+            } catch (IOException | InvalidConfigurationException ex) {
                 MessageHandler.print(Level.WARNING, ex.getMessage());
                 loaded.put(configFile, false);
                 return;
@@ -110,13 +104,13 @@ public class SpaceConfig {
         } else {
             try {
                 // Making schematics folder
-                File makeSchematics = new File(Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder() + File.separator + "schematics");
+                File makeSchematics = new File(Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin("Space")).getDataFolder() + File.separator + "schematics");
                 if (!makeSchematics.exists()) {
                     makeSchematics.mkdirs();
                 }
                 
-                Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder().mkdir();
-                Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder().mkdir();
+                Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin("Space")).getDataFolder().mkdir();
+                Objects.requireNonNull(Bukkit.getServer().getPluginManager().getPlugin("Space")).getDataFolder().mkdir();
                 fileMap.get(configFile).getParentFile().mkdir();
                 if(!fileMap.get(configFile).exists()) fileMap.get(configFile).createNewFile();
                 InputStream jarURL = SpaceConfig.class.getResourceAsStream("/" + configFile.getName());
@@ -141,22 +135,15 @@ public class SpaceConfig {
      * @throws Exception
      */
     private static void copyFile(InputStream in, File out) throws Exception {
-        InputStream fis = in;
-        FileOutputStream fos = new FileOutputStream(out);
-        try {
+        try (FileOutputStream fos = new FileOutputStream(out)) {
             byte[] buf = new byte[1024];
-            int i = 0;
-            while ((i = fis.read(buf)) != -1) {
+            int i;
+            while ((i = in.read(buf)) != -1) {
                 fos.write(buf, 0, i);
             }
-        } catch (Exception e) {
-            throw e;
         } finally {
-            if (fis != null) {
-                fis.close();
-            }
-            if (fos != null) {
-                fos.close();
+            if (in != null) {
+                in.close();
             }
         }
     }
