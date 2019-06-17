@@ -19,4 +19,3 @@ This will generate the latest version of the plugin locally for you.
 This project is licensed under the [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/).
 
 Forking and modifying the plugin is permitted, but if you're going to work on this project, it would be greatly appreciated to return your work upstream.
-
