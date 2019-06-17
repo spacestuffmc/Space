@@ -9,7 +9,7 @@
 // Package Declaration
 package com.crystalcraftmc.crystalspace.commands;
 
-import com.crystalcraftmc.crystalspace.Space;
+import com.crystalcraftmc.crystalspace.SpaceMain;
 import org.bukkit.command.CommandSender;
 
 /**
@@ -19,7 +19,7 @@ import org.bukkit.command.CommandSender;
  */
 public abstract class SpaceCommand {
     // Variables
-    private Space plugin;
+    private SpaceMain plugin;
     private CommandSender sender;
     private String[] args;
 
@@ -30,7 +30,7 @@ public abstract class SpaceCommand {
      * @param sender Command sender
      * @param args Command arguments
      */
-    public SpaceCommand(Space plugin, CommandSender sender, String[] args) {
+    public SpaceCommand(SpaceMain plugin, CommandSender sender, String[] args) {
         this.plugin = plugin;
         this.sender = sender;
         this.args = args;
@@ -47,7 +47,7 @@ public abstract class SpaceCommand {
      * 
      * @return the plugin
      */
-    public Space getPlugin() {
+    public SpaceMain getPlugin() {
         return plugin;
     }
 
