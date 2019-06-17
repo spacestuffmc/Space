@@ -21,6 +21,7 @@ import java.util.logging.Level;
  * 
  * @author Jack
  */
+@SuppressWarnings("unused")
 public class MessageHandler extends SpaceMessageHandler {
     private static String printPrefix = "[Space]";
     

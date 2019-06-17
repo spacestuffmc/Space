@@ -35,7 +35,7 @@ import java.util.logging.Level;
  */
 public class SpaceSuffocationListener implements Listener {
     // Variables
-    public static Map<Player, Integer> taskid = new HashMap<Player, Integer>();
+    private static Map<Player, Integer> taskid = new HashMap<>();
     private static SpaceMain plugin;
 
     /**
@@ -96,7 +96,7 @@ public class SpaceSuffocationListener implements Listener {
      * 
      * @param player Player to suffocate
      */
-    public static void startSuffocating(Player player) {
+    private static void startSuffocating(Player player) {
         startSuffocating(player, player.getWorld());
     }
     
@@ -106,7 +106,7 @@ public class SpaceSuffocationListener implements Listener {
      * @param player Player to suffocate
      * @param world the world
      */
-    public static void startSuffocating(Player player, World world) {
+    private static void startSuffocating(Player player, World world) {
         if (player.hasPermission("Space.ignoresuitchecks")) {
             return;
         }

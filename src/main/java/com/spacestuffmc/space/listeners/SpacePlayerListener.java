@@ -25,6 +25,7 @@ import org.bukkit.event.player.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Level;
 
 /**
@@ -34,7 +35,7 @@ import java.util.logging.Level;
  */
 public class SpacePlayerListener implements Listener {
     // Variables
-    private final Map<Player, Boolean> inArea = new HashMap<Player, Boolean>();
+    private final Map<Player, Boolean> inArea = new HashMap<>();
     //private final Map<Player, Boolean> fixDupe = new HashMap<Player, Boolean>();
 
 
@@ -49,7 +50,7 @@ public class SpacePlayerListener implements Listener {
             return;
         }
         Player player = event.getPlayer();
-        if (WorldHandler.isSpaceWorld(event.getTo().getWorld()) && event.getTo().getWorld() != event.getFrom().getWorld()) {
+        if (WorldHandler.isSpaceWorld(Objects.requireNonNull(Objects.requireNonNull(event.getTo()).getWorld())) && event.getTo().getWorld() != event.getFrom().getWorld()) {
             /* Notify listeners start */
             SpaceEnterEvent e = new SpaceEnterEvent(event.getPlayer(), event.getFrom(), event.getTo());
             Bukkit.getServer().getPluginManager().callEvent(e);
@@ -60,8 +61,8 @@ public class SpacePlayerListener implements Listener {
             /* Notify listeners end */
             MessageHandler.debugPrint(Level.INFO, "Player '" + event.getPlayer().getName() + "' teleported to space.");
             PlayerHandler.giveSuitOrHelmet(player);
-        } else if (!WorldHandler.isSpaceWorld(event.getTo().getWorld())
-                && WorldHandler.isSpaceWorld(event.getFrom().getWorld())) {
+        } else if (!WorldHandler.isSpaceWorld(Objects.requireNonNull(event.getTo().getWorld()))
+                && WorldHandler.isSpaceWorld(Objects.requireNonNull(event.getFrom().getWorld()))) {
             /* Notify listeners start */
             SpaceLeaveEvent e = new SpaceLeaveEvent(event.getPlayer(), event.getFrom(), event.getTo());
             Bukkit.getServer().getPluginManager().callEvent(e);
@@ -87,8 +88,8 @@ public class SpacePlayerListener implements Listener {
         if (WorldHandler.isInAnySpace(event.getPlayer())) {
             if(!inArea.containsKey(event.getPlayer())) inArea.put(event.getPlayer(), false);
             boolean insideArea=PlayerHandler.insideArea(event.getPlayer());
-            if (insideArea == true) {
-                if (inArea.get(event.getPlayer()) == false) {
+            if (insideArea) {
+                if (!inArea.get(event.getPlayer())) {
                     inArea.put(event.getPlayer(), true);
                     /* Notify listeners start */
                     AreaEnterEvent e = new AreaEnterEvent(event.getPlayer());
@@ -97,7 +98,7 @@ public class SpacePlayerListener implements Listener {
                     MessageHandler.debugPrint(Level.INFO, "Player '" + event.getPlayer().getName() + "' entered an area.");
                 }
             } else {
-                if (inArea.get(event.getPlayer()) == true) {
+                if (inArea.get(event.getPlayer())) {
                     inArea.put(event.getPlayer(), false);
                     /* Notify listeners start */
                     AreaLeaveEvent e = new AreaLeaveEvent(event.getPlayer());
@@ -145,7 +146,7 @@ public class SpacePlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerRespawn(PlayerRespawnEvent event) {
-        if(WorldHandler.isSpaceWorld(event.getRespawnLocation().getWorld())){
+        if(WorldHandler.isSpaceWorld(Objects.requireNonNull(event.getRespawnLocation().getWorld()))){
             PlayerHandler.giveSuitOrHelmet(event.getPlayer());
             boolean insideArea = PlayerHandler.insideArea(event.getPlayer());
             inArea.put(event.getPlayer(), insideArea);

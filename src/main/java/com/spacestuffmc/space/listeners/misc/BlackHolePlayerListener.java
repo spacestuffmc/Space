@@ -35,13 +35,14 @@ import java.util.Map;
  * @author iffa
  * @author jflory7
  */
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "unused", "ConstantConditions"})
 public class BlackHolePlayerListener implements Listener {
     // Variables
-    private static Map<Player, Integer> runnables = new HashMap<Player, Integer>();
-    private static Map<Chunk, Boolean> scannedNonSpout = new HashMap<Chunk, Boolean>();
+    private static Map<Player, Integer> runnables = new HashMap<>();
+    private static Map<Chunk, Boolean> scannedNonSpout = new HashMap<>();
     private static final int SIZE = 20;
     private static long lastTime = System.currentTimeMillis();
-    private static List<Block> nonSpoutBlocks = new ArrayList<Block>(); //To be used if not using Spout and black holes is on
+    private static List<Block> nonSpoutBlocks = new ArrayList<>(); //To be used if not using Spout and black holes is on
 
     /**
      * Called when a player attempts to move.
