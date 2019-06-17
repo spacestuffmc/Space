@@ -19,13 +19,14 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings({"unused", "NullableProblems"})
 public class SpaceCommandEvent extends Event implements Cancellable {
     // Variables
     private static final HandlerList handlers = new HandlerList();
     private static final long serialVersionUID = -7384621557571433605L;
     private boolean canceled;
     private CommandSender sender;
-    private String arguments[];
+    private String[] arguments;
 
     /**
      * Constructor for SpaceCommandEvent.
@@ -34,7 +35,7 @@ public class SpaceCommandEvent extends Event implements Cancellable {
      * @param sender CommandSender
      * @param args Command arguments
      */
-    public SpaceCommandEvent(String event, CommandSender sender, String args[]) {
+    public SpaceCommandEvent(String event, CommandSender sender, String[] args) {
         this.sender = sender;
         this.arguments = args;
     }

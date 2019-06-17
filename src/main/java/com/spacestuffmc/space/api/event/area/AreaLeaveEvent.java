@@ -28,7 +28,7 @@ public class AreaLeaveEvent extends AreaEvent {
      * @param player Player
      */
     public AreaLeaveEvent(Player player) {
-        super("AreaLeaveEvent", player);
+        super(player);
     }
         
     /**

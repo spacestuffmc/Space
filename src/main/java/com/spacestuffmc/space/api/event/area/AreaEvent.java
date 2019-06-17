@@ -18,6 +18,7 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings({"NullableProblems", "unused"})
 public abstract class AreaEvent extends Event {
     // Variables
     private static final HandlerList handlers = new HandlerList();
@@ -27,10 +28,9 @@ public abstract class AreaEvent extends Event {
     /**
      * Constructor for AreaEvent.
      * 
-     * @param event Event
      * @param player Player
      */
-    public AreaEvent(String event, Player player) {
+    public AreaEvent(Player player) {
         this.player = player;
     }
 
