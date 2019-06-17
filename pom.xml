@@ -90,7 +90,7 @@
                     <relocations>
                         <relocation>
                             <pattern>org.mcstats</pattern>
-                            <shadedPattern>com.crystalcraftmc.crystalspace</shadedPattern>
+                            <shadedPattern>com.spacestuffmc.space</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

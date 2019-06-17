@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.crystalcraftmc.crystalspace</groupId>
+  <groupId>com.spacestuffmc.crystalspace</groupId>
   <artifactId>CrystalSpace</artifactId>
   <name>CrystalSpace</name>
   <version>1.10-R0.1-SNAPSHOT</version>
@@ -47,7 +47,7 @@
           <relocations>
             <relocation>
               <pattern>org.mcstats</pattern>
-              <shadedPattern>com.crystalcraftmc.crystalspace</shadedPattern>
+              <shadedPattern>com.spacestuffmc.space</shadedPattern>
             </relocation>
           </relocations>
         </configuration>
@@ -79,7 +79,7 @@
     </dependency>
   </dependencies>
   <properties>
-    <main.class>com.crystalcraftmc.crystalspace.SpaceMain</main.class>
+    <main.class>com.spacestuffmc.space.SpaceMain</main.class>
     <build.number>Unknown</build.number>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
