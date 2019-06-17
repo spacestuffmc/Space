@@ -35,7 +35,7 @@ import java.util.logging.Level;
 public class SpaceWorldHandler {
     // Variables
     protected static List<String> spaceWorldNames = new ArrayList<String>();
-    private static SpaceMain plugin = (SpaceMain) Bukkit.getPluginManager().getPlugin("CrystalSpace");
+    private static SpaceMain plugin = (SpaceMain) Bukkit.getPluginManager().getPlugin("Space");
     private static Map<World, Integer> forcenightId = new HashMap<World, Integer>();
 
     /**

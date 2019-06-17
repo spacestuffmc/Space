@@ -26,7 +26,7 @@ public abstract class SpaceCommand {
     /**
      * Constructor of SpaceCommand.
      * 
-     * @param plugin CrystalSpace instance
+     * @param plugin Space instance
      * @param sender Command sender
      * @param args Command arguments
      */

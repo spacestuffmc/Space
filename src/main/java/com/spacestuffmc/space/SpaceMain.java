@@ -160,7 +160,7 @@ public class SpaceMain extends JavaPlugin {
     }
 
     /**
-     * Registers events for CrystalSpace.
+     * Registers events for Space.
      */
     private void registerEvents() {
         // Registering other events.

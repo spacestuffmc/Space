@@ -17,13 +17,13 @@ package com.spacestuffmc.space.api;
 public interface SpaceAddon {
     
     /**
-     * Called when CrystalSpace is enabled
+     * Called when Space is enabled
     */
     //public void onSpaceEnable();
     
     /**
      * 
-     * Called when CrystalSpace is disabled
+     * Called when Space is disabled
      */
     public void onSpaceDisable();
 }

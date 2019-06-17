@@ -12,7 +12,7 @@ import com.spacestuffmc.space.api.SpaceLangHandler;
 
 /**
  * Useful methods to get localized strings from lang.yml. Try keeping params to a minimum!
- * Oh, and you can use this if you ever need CrystalSpace's default strings :).
+ * Oh, and you can use this if you ever need Space's default strings :).
  * 
  * Internal use only
  * 

@@ -32,7 +32,7 @@ public class SpaceListCommand extends SpaceCommand {
     /**
      * Constructor of SpaceListCommand.
      * 
-     * @param plugin CrystalSpace instance
+     * @param plugin Space instance
      * @param sender Command sender
      * @param args Command arguments
      */
@@ -45,7 +45,7 @@ public class SpaceListCommand extends SpaceCommand {
      */
     @Override
     public void command() {
-        if (!PlayerHandler.hasPermission("CrystalSpace.teleport.list", (Player) this.getSender())) {
+        if (!PlayerHandler.hasPermission("Space.teleport.list", (Player) this.getSender())) {
             MessageHandler.sendNoPermissionMessage((Player) getSender());
             return;
         }

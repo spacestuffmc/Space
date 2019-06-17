@@ -601,7 +601,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         if(ID.equals("planets")) return;
         try {
             YamlConfiguration config = new YamlConfiguration();
-            config.load(new File(Bukkit.getPluginManager().getPlugin("CrystalSpace").getDataFolder(), "planets/" + ConfigHandler.getPlanetsFile(ID)));
+            config.load(new File(Bukkit.getPluginManager().getPlugin("Space").getDataFolder(), "planets/" + ConfigHandler.getPlanetsFile(ID)));
             density = config.getInt("density", (Integer) SpaceConfig.Defaults.DENSITY.getDefault()); // Number of planetoids it will try to create per
             minSize = config.getInt("minSize", (Integer) SpaceConfig.Defaults.MIN_SIZE.getDefault()); // Minimum radius
             maxSize = config.getInt("maxSize", (Integer) SpaceConfig.Defaults.MAX_SIZE.getDefault()); // Maximum radius

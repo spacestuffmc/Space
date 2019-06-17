@@ -24,7 +24,7 @@ public class SpaceAboutCommand extends SpaceCommand {
     /**
      * Constructor of SpaceAboutCommand.
      * 
-     * @param plugin CrystalSpace instance
+     * @param plugin Space instance
      * @param sender the command sender
      * @param args command arguments
      */

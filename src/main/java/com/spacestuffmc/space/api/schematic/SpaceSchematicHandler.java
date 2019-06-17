@@ -32,7 +32,7 @@ import java.util.logging.Level;
  */
 public class SpaceSchematicHandler {
     // Variables
-    public static File schematicFolder = new File("plugins" + File.separator + "CrystalSpace" + File.separator + "schematics");
+    public static File schematicFolder = new File("plugins" + File.separator + "Space" + File.separator + "schematics");
     private static List<Schematic> schematics = new ArrayList<Schematic>();
 
     /**
@@ -88,10 +88,10 @@ public class SpaceSchematicHandler {
     }
     
     /**
-     * Loads all schematics from plugins/CrystalSpace/schematics.
+     * Loads all schematics from plugins/Space/schematics.
      */
     public static void loadSchematics() {
-        List<File> files = Arrays.asList(new File("plugins" + File.separator + "CrystalSpace" + File.separator + "schematics").listFiles());
+        List<File> files = Arrays.asList(new File("plugins" + File.separator + "Space" + File.separator + "schematics").listFiles());
         if (files.isEmpty()) {
             return;
         }

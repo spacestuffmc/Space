@@ -31,7 +31,7 @@ public class SpaceCommandHandler implements CommandExecutor {
     /**
      * Constructor for SpaceCommandHandler.
      * 
-     * @param plugin CrystalSpace instance
+     * @param plugin Space instance
      */
     public SpaceCommandHandler(SpaceMain plugin) {
         this.plugin = plugin;

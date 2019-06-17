@@ -1,7 +1,7 @@
-Contributing to **CrystalSpace**
+Contributing to **Space**
 ================================
 
-As general housekeeping guidelines, we ask that you follow some of these basic guidelines and conventions for contributing code to CrystalSpace. If you do not follow these guidelines, there may be a delay in your pull request being merged, or possibly rejected.
+As general housekeeping guidelines, we ask that you follow some of these basic guidelines and conventions for contributing code to Space. If you do not follow these guidelines, there may be a delay in your pull request being merged, or possibly rejected.
 
 ## Commiting
 

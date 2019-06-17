@@ -107,7 +107,7 @@ public class SpaceSuffocationListener implements Listener {
      * @param world the world
      */
     public static void startSuffocating(Player player, World world) {
-        if (player.hasPermission("CrystalSpace.ignoresuitchecks")) {
+        if (player.hasPermission("Space.ignoresuitchecks")) {
             return;
         }
         String id = ConfigHandler.getID(world);

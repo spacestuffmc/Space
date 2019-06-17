@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.spacestuffmc.crystalspace</groupId>
-  <artifactId>CrystalSpace</artifactId>
-  <name>CrystalSpace</name>
+  <groupId>com.spacestuffmc.Space</groupId>
+  <artifactId>Space</artifactId>
+  <name>Space</name>
   <version>1.10-R0.1-SNAPSHOT</version>
   <description>Bringing the unexplored frontier of space to Minecraft</description>
-  <url>https://github.com/CrystalCraftMC/CrystalSpace</url>
+  <url>https://github.com/CrystalCraftMC/Space</url>
   <build>
     <resources>
       <resource>

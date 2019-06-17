@@ -37,7 +37,7 @@ public class SpaceExitCommand extends SpaceCommand {
     /**
      * Constructor of SpaceExitCommand.
      * 
-     * @param plugin CrystalSpace instance
+     * @param plugin Space instance
      * @param sender Command sender
      * @param args Command arguments
      */
@@ -52,7 +52,7 @@ public class SpaceExitCommand extends SpaceCommand {
     public void command() {
         Player player = (Player) getSender();
         if (WorldHandler.isInAnySpace(player)) {
-            if (PlayerHandler.hasPermission("CrystalSpace.teleport.exit", player)) {
+            if (PlayerHandler.hasPermission("Space.teleport.exit", player)) {
                 enterDest.put(player, player.getLocation());
                 Location location;
                 if (SpaceEnterCommand.exitDest.containsKey(player)) {

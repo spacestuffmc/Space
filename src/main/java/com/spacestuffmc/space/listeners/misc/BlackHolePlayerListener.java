@@ -50,7 +50,7 @@ public class BlackHolePlayerListener implements Listener {
      */
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerMove(PlayerMoveEvent event) {
-        if (event.isCancelled() || !WorldHandler.isInAnySpace(event.getPlayer()) || event.getPlayer().getHealth() == 0 || event.getPlayer().hasPermission("CrystalSpace.ignoreblackholes")) return;
+        if (event.isCancelled() || !WorldHandler.isInAnySpace(event.getPlayer()) || event.getPlayer().getHealth() == 0 || event.getPlayer().hasPermission("Space.ignoreblackholes")) return;
         long currentTime = System.currentTimeMillis();
         if (!(lastTime + 200 <= currentTime)) return;
         lastTime = System.currentTimeMillis();
@@ -58,7 +58,7 @@ public class BlackHolePlayerListener implements Listener {
     
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerInteract(PlayerInteractEvent event){// Check if breaking non-spout black hole
-	if (event.isCancelled() || !WorldHandler.isInAnySpace(event.getPlayer()) || event.getPlayer().getHealth() == 0 || !event.getPlayer().hasPermission("CrystalSpace.ignoreblackholes")) {
+	if (event.isCancelled() || !WorldHandler.isInAnySpace(event.getPlayer()) || event.getPlayer().getHealth() == 0 || !event.getPlayer().hasPermission("Space.ignoreblackholes")) {
             return;
         }
 	String id = WorldHandler.getID(event.getPlayer().getWorld());

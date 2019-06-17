@@ -88,7 +88,7 @@ public class SpaceConfig {
      * @param configFile ConfigFile to load
      */
     public static void loadConfig(ConfigFile configFile) {
-        fileMap.put(configFile, new File(Bukkit.getServer().getPluginManager().getPlugin("CrystalSpace").getDataFolder(), configFile.getNameWithLocation()));
+        fileMap.put(configFile, new File(Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder(), configFile.getNameWithLocation()));
         if (fileMap.get(configFile).exists()) {
             config.put(configFile, new YamlConfiguration());
             try {
@@ -110,13 +110,13 @@ public class SpaceConfig {
         } else {
             try {
                 // Making schematics folder
-                File makeSchematics = new File(Bukkit.getServer().getPluginManager().getPlugin("CrystalSpace").getDataFolder() + File.separator + "schematics");
+                File makeSchematics = new File(Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder() + File.separator + "schematics");
                 if (!makeSchematics.exists()) {
                     makeSchematics.mkdirs();
                 }
                 
-                Bukkit.getServer().getPluginManager().getPlugin("CrystalSpace").getDataFolder().mkdir();
-                Bukkit.getServer().getPluginManager().getPlugin("CrystalSpace").getDataFolder().mkdir();
+                Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder().mkdir();
+                Bukkit.getServer().getPluginManager().getPlugin("Space").getDataFolder().mkdir();
                 fileMap.get(configFile).getParentFile().mkdir();
                 if(!fileMap.get(configFile).exists()) fileMap.get(configFile).createNewFile();
                 InputStream jarURL = SpaceConfig.class.getResourceAsStream("/" + configFile.getName());

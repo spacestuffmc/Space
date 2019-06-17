@@ -22,7 +22,7 @@ import java.util.logging.Level;
  * @author Jack
  */
 public class MessageHandler extends SpaceMessageHandler {
-    private static String printPrefix = "[CrystalSpace]";
+    private static String printPrefix = "[Space]";
     
     /**
      * Prints a message to the console.
