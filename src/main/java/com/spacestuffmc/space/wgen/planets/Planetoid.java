@@ -20,21 +20,22 @@ import java.util.Set;
  * @author Canis85
  * @author iffa
  */
+@SuppressWarnings("deprecation")
 public class Planetoid implements Serializable {
     // Variables
     private static final long serialVersionUID = 1L;
-    public Set<MaterialData> coreBlkIds;
-    public Set<MaterialData> shellBlkIds;
-    public int shellThickness;
-    public int radius;
-    public int xPos;
-    public int yPos;
-    public int zPos;
+    Set<MaterialData> coreBlkIds;
+    Set<MaterialData> shellBlkIds;
+    int shellThickness;
+    int radius;
+    int xPos;
+    int yPos;
+    int zPos;
 
     /**
      * Constructor of Planetoid.
      */
-    public Planetoid() {
+    Planetoid() {
     }
 
     /**

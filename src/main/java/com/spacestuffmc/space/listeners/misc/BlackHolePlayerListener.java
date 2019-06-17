@@ -63,9 +63,11 @@ public class BlackHolePlayerListener implements Listener {
             return;
         }
 	String id = WorldHandler.getID(event.getPlayer().getWorld());
+        //TODO: find replacement methods
 	if(Action.LEFT_CLICK_BLOCK != event.getAction() || event.getClickedBlock().getTypeId() != SpaceBlackHolePopulator.ID_TO_USE){
 	    return;
 	}
+        //TODO: find replacement methods
 	event.getClickedBlock().setTypeId(0);
     }
     /**
@@ -96,6 +98,7 @@ public class BlackHolePlayerListener implements Listener {
                     for (int y = 0; y < 128; y++) {
                         for (int z = 0; z < 16; z++) {
 			    Block block = chunk.getBlock(x, y, z);
+			    //TODO: find replacement methods
 			    if(block.getTypeId() == SpaceBlackHolePopulator.ID_TO_USE){
 				nonSpoutBlocks.add(block);
 			    }

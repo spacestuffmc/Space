@@ -26,6 +26,7 @@ import java.util.Random;
  * @author Nightgunner5
  * @author kitskub
  */
+@SuppressWarnings("NullableProblems")
 public class SpaceAsteroidPopulator extends BlockPopulator {
     // Variables
 
@@ -43,6 +44,7 @@ public class SpaceAsteroidPopulator extends BlockPopulator {
         for (int i = 0; i < 2; i++) {
             Block block = getRandomBlock(source, random);
             String id = ConfigHandler.getID(world);
+            //TODO: find replacement methods
             if (random.nextInt(200) <= ConfigHandler.getStoneChance(id) && block.getTypeId() == 0) {
                 block.setTypeId(1);
                 for (int j = 0; j < 1500; j++) {

@@ -21,6 +21,7 @@ import java.util.Random;
  * 
  * @author iffa
  */
+@SuppressWarnings({"NullableProblems", "unused"})
 public class SpaceEffectPopulator extends BlockPopulator {
 
     /**
@@ -36,7 +37,7 @@ public class SpaceEffectPopulator extends BlockPopulator {
     public void populate(World world, Random random, Chunk source) {
         for (int x = 0; x < 16; x++) {
             for (int z = 0; z < 16; z++) {
-                source.getBlock(x, 1, z).setType(Material.ENDER_PORTAL);
+                source.getBlock(x, 1, z).setType(Material.END_PORTAL);
             }
         }
     }

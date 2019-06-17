@@ -24,6 +24,7 @@ import java.util.Random;
  * @author iffa
  * @author jflory7 
  */
+@SuppressWarnings("NullableProblems")
 public class SpaceBlackHolePopulator extends BlockPopulator {
     public static final int ID_TO_USE = 120; //for easier changing if needed
 
@@ -53,6 +54,7 @@ public class SpaceBlackHolePopulator extends BlockPopulator {
             int z = random.nextInt(16);
             int y = random.nextInt(world.getMaxHeight());
             Block block = world.getBlockAt((chunkX * 16 + x), y, (chunkZ * 16 + z));
+            //TODO: find replacement methods
             block.setTypeId(ID_TO_USE);
         }
     }

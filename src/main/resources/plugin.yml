@@ -4,7 +4,7 @@
 name: Space
 main: SpaceMain
 version: 3.0.0-ALPHA-5
-authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198]
+authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198, TheOnlineWorld]
 website: https://github.com/SpaceStuffMC/Space
 jenkins-url: http://ci.SpaceStuffMC.com/job/Space/
 

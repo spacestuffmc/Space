@@ -20,8 +20,9 @@ import java.util.Random;
  *
  * @author kitskub
  */
+@SuppressWarnings("NullableProblems")
 public class SpaceDataPopulator extends BlockPopulator {
-    public static Map<World, Map<WrappedCoords, Byte>> coords = new HashMap<World, Map<WrappedCoords, Byte>>();
+    private static Map<World, Map<WrappedCoords, Byte>> coords = new HashMap<>();
     
     public static void addCoords(World world, int chunkX, int chunkZ, int x, int y, int z, byte data) {
         if (coords.get(world) == null) {
@@ -41,17 +42,18 @@ public class SpaceDataPopulator extends BlockPopulator {
         if (coords.get(world) == null) return;
         for (WrappedCoords c : coords.get(world).keySet()) {
             if (c.chunkX == chunk.getX() && c.chunkZ == chunk.getZ()) {
+                //TODO: find replacement methods
                 chunk.getBlock(c.x, c.y, c.z).setData(coords.get(world).get(c));
             }
         }
     }
     
     public static class WrappedCoords {
-        public int chunkX;
-        public int chunkZ;
+        int chunkX;
+        int chunkZ;
         public int x;
         public int y;
-        public int z;
+        int z;
 
         @Override
         public boolean equals(Object obj) {

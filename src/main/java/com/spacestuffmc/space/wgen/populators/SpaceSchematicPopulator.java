@@ -26,6 +26,7 @@ import java.util.logging.Level;
  * 
  * @author iffa
  */
+@SuppressWarnings("NullableProblems")
 public class SpaceSchematicPopulator extends BlockPopulator {
 
     /**

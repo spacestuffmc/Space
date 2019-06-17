@@ -23,6 +23,7 @@ import java.util.Random;
  * @author iffa
  * @author NeonMaster (thanks for the original satellite design, too bad my mathematics blew it up!)
  */
+@SuppressWarnings({"NullableProblems", "SuspiciousNameCombination"})
 public class SpaceSatellitePopulator extends BlockPopulator {
     /**
      * Populates a world with satellites.
@@ -36,20 +37,20 @@ public class SpaceSatellitePopulator extends BlockPopulator {
         String id = ConfigHandler.getID(world);
         if (random.nextInt(1337) <= ConfigHandler.getSatelliteChance(id)) {
             int height = random.nextInt(world.getMaxHeight());
-            buildSatellite(world, height, source);
+            buildSatellite(height, source);
         }
     }
 
     /**
      * Builds a satellite. However badly! (but it looks cool)
      * 
-     * @param world World
      * @param height Height
      * @param source Source chunk
      */
-    private void buildSatellite(World world, int height, Chunk source) {
+    private void buildSatellite(int height, Chunk source) {
         for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 3; y++) {
+                //TODO: find replacement methods
                 source.getBlock(y, height, x).setTypeId(102);
             }
         }
