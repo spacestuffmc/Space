@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2016 CrystalCraftMC
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ */
+
+package org.jnbt;
+
+/**
+ * The <code>TAG_Byte</code> tag.
+ * @author Graham Edgecombe
+ *
+ */
+public final class ByteTag extends Tag {
+
+	/**
+	 * The value.
+	 */
+	private final byte value;
+	
+	/**
+	 * Creates the tag.
+	 * @param name The name.
+	 * @param value The value.
+	 */
+	public ByteTag(String name, byte value) {
+		super(name);
+		this.value = value;
+	}
+
+	@Override
+	public Byte getValue() {
+		return value;
+	}
+	
+	@Override
+	public String toString() {
+		String name = getName();
+		String append = "";
+		if(name != null && !name.equals("")) {
+			append = "(\"" + this.getName() + "\")";
+		}
+		return "TAG_Byte" + append + ": " + value;
+	}
+	
+}

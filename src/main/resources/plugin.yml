@@ -1,0 +1,65 @@
+# CrystalSpace - plugin.yml
+# All developers/contributors are here!
+
+name: CrystalSpace
+main: com.crystalcraftmc.crystalspace.Space
+version: 3.0.0-ALPHA-5
+authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198]
+website: https://github.com/CrystalCraftMC/CrystalSpace
+jenkins-url: http://ci.crystalcraftmc.com/job/CrystalSpace/
+
+# Load on startup for bukkit.yml, and all that support
+load: startup
+softdepend: [Register]
+
+# Commands
+commands:
+  space:
+    description: Go to space, back to earth etc.
+    usage: |
+          /<command> <enter> [spaceworld] - Go to a space world
+          /<command> <back> - Go back where you were
+          /<command> <list> - Lists all spaceworlds (loaded with config.yml)
+          /<command> <help> - Shows help (usage)
+          /<command> <about> - About CrystalSpace
+
+# Permission nodes
+permissions:
+  
+  # All command permissions group
+  CrystalSpace.commands.*:
+    description: Access to all CrystalSpace commands.
+    children:
+      CrystalSpace.teleport.*: true
+  
+  # Ignores
+  CrystalSpace.ignore.*:
+    description: Access to all ignore permissions (no suit check, black hole effects etc.).
+    children:
+      CrystalSpace.ignoresuitchecks: true
+      CrystalSpace.ignoreblackholes: true
+  
+  # Teleport
+  CrystalSpace.teleport.*:
+    description: Access to all teleportation commands.
+    children:
+      CrystalSpace.teleport.enter: true
+      CrystalSpace.teleport.exit: true
+      CrystalSpace.teleport.list: true
+  
+  # Single permissions
+  CrystalSpace.teleport.enter:
+    description: Allows teleporting to space.
+    default: op
+  CrystalSpace.teleport.exit:
+    description: Allows teleporting out of space.
+    default: op
+  CrystalSpace.teleport.list:
+    description: Allows requesting list of spaceworlds.
+    default: op
+  CrystalSpace.ignoresuitchecks:
+    description: Ignores all suit and helmet checks for the player.
+    default: false
+  CrystalSpace.ignoreblackholes:
+    description: Ignores all black holes (i.e. they will not suck) for the player.
+    default: false
