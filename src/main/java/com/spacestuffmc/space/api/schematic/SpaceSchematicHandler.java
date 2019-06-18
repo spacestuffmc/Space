@@ -82,9 +82,9 @@ public class SpaceSchematicHandler {
             int originZ = origin.getBlockZ() + location.getBlockZ();
 
             for (Material material : blocksMap.get(location).keySet()) {
-                world.getBlockAt(originX, originY, originZ).setType(material);
-                //TODO: require assistance - tow
-                world.getBlockAt(originX, originY, originZ).getBlockData(blocksMap.get(location).get(material).getData());
+                Objects.requireNonNull(world).getBlockAt(originX, originY, originZ).setType(material);
+                //TODO: testing required
+                world.getBlockAt(originX, originY, originZ).getData();
             }
         }
     }

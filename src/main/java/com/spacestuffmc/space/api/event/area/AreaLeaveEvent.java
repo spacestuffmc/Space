@@ -17,6 +17,7 @@ import org.bukkit.event.HandlerList;
  * 
  * @author iffa
  */
+@SuppressWarnings("NullableProblems")
 public class AreaLeaveEvent extends AreaEvent {
     // Variables
     private static final HandlerList handlers = new HandlerList();

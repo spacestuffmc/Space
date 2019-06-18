@@ -11,6 +11,7 @@ package com.spacestuffmc.space.wgen.populators;
 
 import com.spacestuffmc.space.handlers.ConfigHandler;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.generator.BlockPopulator;
@@ -26,7 +27,8 @@ import java.util.Random;
  */
 @SuppressWarnings("NullableProblems")
 public class SpaceBlackHolePopulator extends BlockPopulator {
-    public static final int ID_TO_USE = 120; //for easier changing if needed
+    //public static final int ID_TO_USE = 120; //for easier changing if needed
+    public static Material material = Material.END_PORTAL_FRAME;
 
     public SpaceBlackHolePopulator() {
     }
@@ -54,8 +56,7 @@ public class SpaceBlackHolePopulator extends BlockPopulator {
             int z = random.nextInt(16);
             int y = random.nextInt(world.getMaxHeight());
             Block block = world.getBlockAt((chunkX * 16 + x), y, (chunkZ * 16 + z));
-            //TODO: find replacement methods
-            block.setTypeId(ID_TO_USE);
+            block.setType(material);
         }
     }
 

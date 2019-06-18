@@ -38,8 +38,8 @@ ids:
             schematicchance: 5
             blackholechance: 8
         suit:
-            required: false
+            required: true
         helmet:
-            required: false
+            required: true
         maxroomheight: 5
         alwaysnight: true

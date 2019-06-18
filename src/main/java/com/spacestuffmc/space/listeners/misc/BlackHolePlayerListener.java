@@ -14,6 +14,7 @@ import com.spacestuffmc.space.wgen.populators.SpaceBlackHolePopulator;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -63,13 +64,17 @@ public class BlackHolePlayerListener implements Listener {
             return;
         }
 	String id = WorldHandler.getID(event.getPlayer().getWorld());
-        //TODO: find replacement methods
-	if(Action.LEFT_CLICK_BLOCK != event.getAction() || event.getClickedBlock().getTypeId() != SpaceBlackHolePopulator.ID_TO_USE){
+        //TODO: find replacement methods (material something)
+	/*if(Action.LEFT_CLICK_BLOCK != event.getAction() || event.getClickedBlock().getTypeId() != SpaceBlackHolePopulator.ID_TO_USE){
 	    return;
-	}
-        //TODO: find replacement methods
-	event.getClickedBlock().setTypeId(0);
+	}*/
+	if(Action.LEFT_CLICK_BLOCK != event.getAction() || event.getClickedBlock().getType() != SpaceBlackHolePopulator.material){
+	    return;
+        }
+
+	event.getClickedBlock().setType(Material.AIR);
     }
+    //.setTypeId(0)
     /**
      * Gets all running suck tasks.
      *
@@ -99,7 +104,7 @@ public class BlackHolePlayerListener implements Listener {
                         for (int z = 0; z < 16; z++) {
 			    Block block = chunk.getBlock(x, y, z);
 			    //TODO: find replacement methods
-			    if(block.getTypeId() == SpaceBlackHolePopulator.ID_TO_USE){
+			    if(block.getType() == SpaceBlackHolePopulator.material){
 				nonSpoutBlocks.add(block);
 			    }
 

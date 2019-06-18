@@ -30,7 +30,7 @@ public abstract class AreaEvent extends Event {
      * 
      * @param player Player
      */
-    public AreaEvent(Player player) {
+    AreaEvent(Player player) {
         this.player = player;
     }
 

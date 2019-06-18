@@ -41,9 +41,9 @@ public class Schematic {
      * @param entities Entities
      * @param tileEntities Tile entities
      */
-    public Schematic(String name,
-            byte[] blocks, byte[] data, short width, short height, short length,
-            List<Tag> entities, List<Tag> tileEntities) {
+    Schematic(String name,
+              byte[] blocks, byte[] data, short width, short height, short length,
+              List<Tag> entities, List<Tag> tileEntities) {
         this.name = name;
         this.blocks = blocks;
         this.data = data;
@@ -68,7 +68,7 @@ public class Schematic {
      * 
      * @return Blocks
      */
-    public byte[] getBlocks() {
+    byte[] getBlocks() {
         return blocks;
     }
     
@@ -77,7 +77,7 @@ public class Schematic {
      * 
      * @return Block data
      */
-    public byte[] getBlockData() {
+    byte[] getBlockData() {
         return data;
     }
     
@@ -86,7 +86,7 @@ public class Schematic {
      * 
      * @return Width (X)
      */
-    public short getWidth() {
+    short getWidth() {
         return width;
     }
     
@@ -95,7 +95,7 @@ public class Schematic {
      * 
      * @return Height (Y)
      */
-    public short getHeight() {
+    short getHeight() {
         return height;
     }
     
@@ -122,7 +122,7 @@ public class Schematic {
      * 
      * @return Tile entities
      */
-    public List<Tag> getTileEntities() {
+    List<Tag> getTileEntities() {
         return tileEntities;
     }
 }
