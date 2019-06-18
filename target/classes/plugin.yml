@@ -1,0 +1,65 @@
+# Space - plugin.yml
+# All developers/contributors are here!
+
+name: Space
+main: SpaceMain
+version: 3.0.0-ALPHA-5
+authors: [kitskub, iffa, SwearWord, HACKhalo2, Canis85, BR, jflory7, Jacc734, Jwood9198, TheOnlineWorld]
+website: https://github.com/SpaceStuffMC/Space
+jenkins-url: http://ci.SpaceStuffMC.com/job/Space/
+
+# Load on startup for bukkit.yml, and all that support
+load: startup
+softdepend: [Register]
+
+# Commands
+commands:
+  space:
+    description: Go to space, back to earth etc.
+    usage: |
+          /<command> <enter> [spaceworld] - Go to a space world
+          /<command> <back> - Go back where you were
+          /<command> <list> - Lists all spaceworlds (loaded with config.yml)
+          /<command> <help> - Shows help (usage)
+          /<command> <about> - About Space
+
+# Permission nodes
+permissions:
+  
+  # All command permissions group
+  Space.commands.*:
+    description: Access to all Space commands.
+    children:
+      Space.teleport.*: true
+  
+  # Ignores
+  Space.ignore.*:
+    description: Access to all ignore permissions (no suit check, black hole effects etc.).
+    children:
+      Space.ignoresuitchecks: true
+      Space.ignoreblackholes: true
+  
+  # Teleport
+  Space.teleport.*:
+    description: Access to all teleportation commands.
+    children:
+      Space.teleport.enter: true
+      Space.teleport.exit: true
+      Space.teleport.list: true
+  
+  # Single permissions
+  Space.teleport.enter:
+    description: Allows teleporting to space.
+    default: op
+  Space.teleport.exit:
+    description: Allows teleporting out of space.
+    default: op
+  Space.teleport.list:
+    description: Allows requesting list of spaceworlds.
+    default: op
+  Space.ignoresuitchecks:
+    description: Ignores all suit and helmet checks for the player.
+    default: false
+  Space.ignoreblackholes:
+    description: Ignores all black holes (i.e. they will not suck) for the player.
+    default: false

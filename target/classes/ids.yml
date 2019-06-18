@@ -1,0 +1,45 @@
+# Space v3.0.0-ALPHA - IDs File
+# ----------------------------------------
+ids:
+############# YOUR ID'S HERE:
+    # TODO: Documentation for configs! (new and up-to-date ones that is)
+    # Example ID - totally empty (to simulate the old empty generator with the new one)
+    empty:
+        generation:
+            generateplanets: false
+            generateasteroids: false
+            generatesatellites: false
+            generatefloor: false
+            generateschematics: false
+            generateblackholes: false
+            glowstonechance: 1
+            stonechance: 3
+            satellitechance: 1
+            schematicchance: 5
+            blackholechance: 8
+        suit:
+            required: false
+        helmet:
+            required: false
+        maxroomheight: 5
+        alwaysnight: true
+    # Generate everything
+    default:
+        generation:
+            generateplanets: true
+            generateasteroids: true
+            generatesatellites: true
+            generatefloor: true
+            generateschematics: true
+            generateblackholes: true
+            glowstonechance: 1
+            stonechance: 3
+            satellitechance: 1
+            schematicchance: 5
+            blackholechance: 8
+        suit:
+            required: true
+        helmet:
+            required: true
+        maxroomheight: 5
+        alwaysnight: true

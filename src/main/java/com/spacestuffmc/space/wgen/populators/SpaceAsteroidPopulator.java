@@ -11,6 +11,7 @@ package com.spacestuffmc.space.wgen.populators;
 
 import com.spacestuffmc.space.handlers.ConfigHandler;
 import org.bukkit.Chunk;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -45,45 +46,45 @@ public class SpaceAsteroidPopulator extends BlockPopulator {
             Block block = getRandomBlock(source, random);
             String id = ConfigHandler.getID(world);
             //TODO: find replacement methods
-            if (random.nextInt(200) <= ConfigHandler.getStoneChance(id) && block.getTypeId() == 0) {
-                block.setTypeId(1);
+            if (random.nextInt(200) <= ConfigHandler.getStoneChance(id) && block.getType() == Material.AIR) {
+                block.setType(Material.STONE);
                 for (int j = 0; j < 1500; j++) {
                     Block current = block.getRelative(random.nextInt(8) - random.nextInt(8),
                             random.nextInt(12),
                             random.nextInt(8) - random.nextInt(8));
-                    if (current.getTypeId() != 0) {
+                    if (current.getType() != Material.AIR) {
                         continue;
                     }
                     int count = 0;
                     for (BlockFace face : faces) {
-                        if (current.getRelative(face).getTypeId() == 1) {
+                        if (current.getRelative(face).getType() == Material.STONE) {
                             count++;
                         }
                     }
                     if (count == 1) {
-                        current.setTypeId(1);
+                        current.setType(Material.STONE);
                     }
                 }
             }
             block = getRandomBlock(source, random);
-            if (random.nextInt(200) <= ConfigHandler.getGlowstoneChance(id) && block.getTypeId() == 0) {
-                block.setTypeId(89);
+            if (random.nextInt(200) <= ConfigHandler.getGlowstoneChance(id) && block.getType() == Material.AIR) {
+                block.setType(Material.GLOWSTONE);
 
                 for (int j = 0; j < 1500; j++) {
                     Block current = block.getRelative(random.nextInt(8) - random.nextInt(8),
                             random.nextInt(12),
                             random.nextInt(8) - random.nextInt(8));
-                    if (current.getTypeId() != 0) {
+                    if (current.getType() != Material.AIR) {
                         continue;
                     }
                     int count = 0;
                     for (BlockFace face : faces) {
-                        if (current.getRelative(face).getTypeId() == 89) {
+                        if (current.getRelative(face).getType() == Material.GLOWSTONE) {
                             count++;
                         }
                     }
                     if (count == 1) {
-                        current.setTypeId(89);
+                        current.setType(Material.GLOWSTONE);
                     }
                 }
             }

@@ -51,12 +51,12 @@ public class SpaceSatellitePopulator extends BlockPopulator {
         for (int x = 0; x < 5; x++) {
             for (int y = 0; y < 3; y++) {
                 //TODO: find replacement methods
-                source.getBlock(y, height, x).setTypeId(102);
+                source.getBlock(y, height, x).setType(Material.WHITE_STAINED_GLASS_PANE);
             }
         }
         for (int x = 6; x < 11; x++) {
             for (int y = 0; y < 3; y++) {
-                source.getBlock(y, height, x).setTypeId(102);
+                source.getBlock(y, height, x).setType(Material.WHITE_STAINED_GLASS_PANE);
             }
         }
         for (int y = 0; y < 3; y++) {

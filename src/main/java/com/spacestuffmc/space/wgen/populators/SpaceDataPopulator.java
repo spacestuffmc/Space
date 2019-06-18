@@ -43,7 +43,9 @@ public class SpaceDataPopulator extends BlockPopulator {
         for (WrappedCoords c : coords.get(world).keySet()) {
             if (c.chunkX == chunk.getX() && c.chunkZ == chunk.getZ()) {
                 //TODO: find replacement methods
-                chunk.getBlock(c.x, c.y, c.z).setData(coords.get(world).get(c));
+                //chunk.getBlock(c.x, c.y, c.z).setData(coords.get(world).get(c));
+                //chunk.getBlock(c.x, c.y, c.z).setBlockData(coords.get(world).get(c));
+                //chunk.getBlock(c.x, c.y, c.z).getBlockData().clone().getAsString();
             }
         }
     }

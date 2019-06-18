@@ -230,7 +230,10 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                                     if (xShell || zShell || yShell) {
                                         ArrayList<MaterialData> list = new ArrayList<>(curPl.shellBlkIds);
                                         MaterialData get = list.get(random.nextInt(list.size()));
-                                        setBlock(retVal, chunkX, worldY, chunkZ, (byte) get.getItemTypeId());
+                                        //
+                                         setBlock(retVal, chunkX, worldY, chunkZ, get.getItemType());
+
+
                                         if (get.getData() != 0) { //Has data
                                             SpaceDataPopulator.addCoords(world, x, z, chunkX, worldY, chunkZ, get.getData());
                                         }
@@ -238,7 +241,8 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                                         ArrayList<MaterialData> list = new ArrayList<>(curPl.coreBlkIds);
                                         // this confuses me too much. this part is setting core blocks, right? how is it "random"?
                                         MaterialData get = list.get(random.nextInt(list.size()));
-                                        setBlock(retVal, chunkX, worldY, chunkZ, (byte) get.getItemTypeId());
+                                        setBlock(retVal, chunkX, worldY, chunkZ, (byte) get.getItemType());
+
                                         if (get.getData() != 0) { //Has data
                                             SpaceDataPopulator.addCoords(world, x, z, chunkX, worldY, chunkZ, get.getData());
                                         }
@@ -343,7 +347,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                     continue;//Don't care
                 }
                 switch (d.getItemType()) {
-                    case LEAVES:
+                    case OAK_LEAVES:
                         //TODO: find replacement methods
                         curPl.coreBlkIds = new HashSet<>(Collections.singleton(new MaterialData(Material.LEGACY_LOG)));//If there's any leaves, only use wood
                         break outer;
@@ -351,7 +355,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                         curPl.coreBlkIds = new HashSet<>(Collections.singleton(new MaterialData(Material.WATER)));// If there's ice, use water? Not final
                         break outer;
                     //TODO: find replacement methods
-                    case WOOL:
+                    case WHITE_WOOL:
                         curPl.coreBlkIds = getBlockTypes(rand, true, true);
                         break outer;
                     default:
@@ -482,20 +486,9 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                     // TODO: Non-deprecated alternative? as well as to other MaterialDatas in the source...
                     // https://bukkit.org/threads/so-block-setdata-is-deprecated-whats-the-new-way-to-change-the-data-of-an-existing-block.189076/
                     // No easy way to use a non-dprecated method ^
-                    matDatas.add(new MaterialData(newMat, (byte) data));
+                    matDatas.add(new MaterialData(newMat));
                 } else {
                     MessageHandler.print(Level.WARNING, newMat.toString() + " is not a block");
-                }
-            }
-            else{
-                //UNSAFE! Does not check if id represents a block
-                try {
-                    final boolean add;
-                    if (matDatas.add(new MaterialData(Integer.parseInt(name), (byte) data))) {
-                        add = true;
-                    } else add = false;
-                } catch (NumberFormatException numberFormatException) {
-                    MessageHandler.print(Level.WARNING, "Unrecognized id (" + name + ") in planets.yml");
                 }
             }
         }
@@ -545,11 +538,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                             continue;
                         }
                         switch (d.getItemType()) {
-                            case BURNING_FURNACE:
+                            case FURNACE:
                             case FIRE:
                             case GLOWSTONE:
                             case JACK_O_LANTERN:
-                            case STATIONARY_LAVA:
+                            case LAVA:
                                 retVal = null;//Try again
                                 continue outer;
                             default:

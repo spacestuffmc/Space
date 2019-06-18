@@ -1,0 +1,5 @@
+org\jnbt\Tag.class
+org\jnbt\DoubleTag.class
+org\jnbt\ByteArrayTag.class
+org\jnbt\NBTInputStream.class
+org\jnbt\EndTag.class
