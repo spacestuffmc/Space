@@ -34,9 +34,9 @@ import java.util.logging.Level;
  */
 public class SpaceWorldHandler {
     // Variables
-    protected static List<String> spaceWorldNames = new ArrayList<String>();
+    protected static List<String> spaceWorldNames = new ArrayList<>();
     private static SpaceMain plugin = (SpaceMain) Bukkit.getPluginManager().getPlugin("Space");
-    private static Map<World, Integer> forcenightId = new HashMap<World, Integer>();
+    private static Map<World, Integer> forcenightId = new HashMap<>();
 
     /**
      * Loads the space worlds into <code>spaceWorldNames</code>.
@@ -75,7 +75,7 @@ public class SpaceWorldHandler {
      * @return all space worlds as a List
      */
     public static List<World> getSpaceWorlds() {
-        List<World> worlds = new ArrayList<World>();
+        List<World> worlds = new ArrayList<>();
         for (String world : spaceWorldNames) {
             World bukkitWorld = Bukkit.getServer().getWorld(world);
             if (bukkitWorld == null) continue;

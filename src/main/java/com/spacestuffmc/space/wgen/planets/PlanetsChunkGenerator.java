@@ -17,6 +17,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
@@ -26,11 +27,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
-import org.bukkit.configuration.InvalidConfigurationException;
 
 /**
  * Generates a space world with planets.
- * 
+ *
  * @author Jack
  * @author Canis85
  * @author iffa
@@ -54,7 +54,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
 
     /**
      * Constructor of PlanetsChunkGenerator.
-     * 
+     *
      * @param id ID
      */
     public PlanetsChunkGenerator(String id) {
@@ -63,8 +63,8 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
 
     /**
      * Constructor of PlanetsChunkGenerator 2.
-     * 
-     * @param id ID
+     *
+     * @param id       ID
      * @param generate ?
      */
     private PlanetsChunkGenerator(String id, boolean generate) {
@@ -76,22 +76,22 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
 
     /**
      * Generates chunk data for a chunk.
-     * 
+     *
      * @param world
      * @param random
      * @param x
      * @param z
      * @param biome
-     * @return 
+     * @return
      */
     @Override
     public ChunkData generateChunkData(World world, Random random, int x, int z, BiomeGrid biome) {
         if (!planets.containsKey(world)) {
             planets.put(world, new ArrayList<Planetoid>());
         }
-        
+
         ChunkData cData = this.createChunkData(world);
-        
+
         if (GENERATE) {
             MessageHandler.debugPrint(Level.INFO, "GENERATE == true, generating planet");
             generatePlanetoids(world, x, z);
@@ -171,21 +171,20 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         }
         return cData;
     }
-    
-    
+
 
     /**
      * Generates a world.
-     * 
-     * @param world World
+     *
+     * @param world  World
      * @param random Random
-     * @param x X-pos
-     * @param z Z-pos
-     * @param biomes 
+     * @param x      X-pos
+     * @param z      Z-pos
+     * @param biomes
      * @return Byte array
      * @deprecated generateChunkData for 1.8+
      */
-    public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes){
+    public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
         if (!planets.containsKey(world)) {
             planets.put(world, new ArrayList<Planetoid>());
         }
@@ -231,7 +230,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                                         ArrayList<MaterialData> list = new ArrayList<>(curPl.shellBlkIds);
                                         MaterialData get = list.get(random.nextInt(list.size()));
                                         //
-                                         setBlock(retVal, chunkX, worldY, chunkZ, get.getItemType());
+                                        setBlock(retVal, chunkX, worldY, chunkZ, (byte) get.getItemType());
 
 
                                         if (get.getData() != 0) { //Has data
@@ -242,6 +241,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                                         // this confuses me too much. this part is setting core blocks, right? how is it "random"?
                                         MaterialData get = list.get(random.nextInt(list.size()));
                                         setBlock(retVal, chunkX, worldY, chunkZ, (byte) get.getItemType());
+
 
                                         if (get.getData() != 0) { //Has data
                                             SpaceDataPopulator.addCoords(world, x, z, chunkX, worldY, chunkZ, get.getData());
@@ -271,12 +271,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
     }
 
     /**
-     * 
      * @param result
      * @param x
      * @param y
      * @param z
-     * @param blkid 
+     * @param blkid
      * @deprecated ChunkGenerator.ChunkData.setBlock for 1.8+
      */
     static void setBlock(byte[][] result, int x, int y, int z, byte blkid) {
@@ -286,12 +285,18 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         result[y >> 4][((y & 0xF) << 8) | (z << 4) | x] = blkid;
     }
 
+    static void setType() {
+        if (result[y >> 4] == Material.AIR) {
+            result[y >> 4] = new Material("4096");
+        }
+  }
+
     /**
      * Generates planets.
-     * 
+     *
      * @param world World
-     * @param x X-pos
-     * @param z Z-pos
+     * @param x     X-pos
+     * @param z     Z-pos
      */
     @SuppressWarnings("fallthrough")
     private void generatePlanetoids(World world, int x, int z) {
@@ -305,7 +310,6 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
 //        if (z < 0) {
 //            seed = -seed;
 //        }
-
 
 
         // If x and Z are zero, generate a log/leaf planet close to 0,0
@@ -348,13 +352,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                 }
                 switch (d.getItemType()) {
                     case OAK_LEAVES:
-                        //TODO: find replacement methods
                         curPl.coreBlkIds = new HashSet<>(Collections.singleton(new MaterialData(Material.LEGACY_LOG)));//If there's any leaves, only use wood
                         break outer;
                     case ICE:
                         curPl.coreBlkIds = new HashSet<>(Collections.singleton(new MaterialData(Material.WATER)));// If there's ice, use water? Not final
                         break outer;
-                    //TODO: find replacement methods
                     case WHITE_WOOL:
                         curPl.coreBlkIds = getBlockTypes(rand, true, true);
                         break outer;
@@ -417,12 +419,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         }
         if (ConfigHandler.getGenerateSchematics(ID)) {
             populators.add(new SpaceSchematicPopulator());
-        }
-        else if (ConfigHandler.getGenerateBlackHoles(ID)){
+        } else if (ConfigHandler.getGenerateBlackHoles(ID)) {
             populators.add(new SpaceBlackHolePopulator());
         }
         populators.add(new SpaceDataPopulator());
-        
+
         // Not FPS friendly
         return populators;
     }
@@ -434,7 +435,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         allowedCoreIds = new HashMap<>();
         allowedShellIds = new HashMap<>();
         for (String s : SpaceConfig.getConfig(SpaceConfig.ConfigFile.DEFAULT_PLANETS).getStringList("blocks.cores")) {
-            String[] sSplit = s.replaceAll("\\s","").split("-");
+            String[] sSplit = s.replaceAll("\\s", "").split("-");
             String[] matList = sSplit[0].split(",");
             Set<MaterialData> matDatas = toSet(matList);
             float value;
@@ -448,7 +449,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         }
 
         for (String s : SpaceConfig.getConfig(SpaceConfig.ConfigFile.DEFAULT_PLANETS).getStringList("blocks.shells")) {
-            String[] sSplit = s.replaceAll("\\s","").split("-");
+            String[] sSplit = s.replaceAll("\\s", "").split("-");
             String[] matList = sSplit[0].split(",");
             Set<MaterialData> matDatas = toSet(matList);
             float value;
@@ -467,21 +468,20 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         for (String mat : matList) {
             int data = 0;
             String name = "";
-            if(mat.split(":").length == 2){
+            if (mat.split(":").length == 2) {
                 try {
                     name = mat.split(":")[0];
                     data = Integer.parseInt(mat.split(":")[1]);
                 } catch (NumberFormatException numberFormatException) {
                     MessageHandler.print(Level.WARNING, "Invalid core block in planets.yml");
                 }
-            }
-            else{
+            } else {
                 name = mat;
             }
             MessageHandler.debugPrint(Level.INFO, "Trying to match material with name: " + name);
             Material newMat = Material.matchMaterial(name);
 
-            if(newMat != null){//Vanilla material
+            if (newMat != null) {//Vanilla material
                 if (newMat.isBlock()) {
                     // TODO: Non-deprecated alternative? as well as to other MaterialDatas in the source...
                     // https://bukkit.org/threads/so-block-setdata-is-deprecated-whats-the-new-way-to-change-the-data-of-an-existing-block.189076/
@@ -494,11 +494,12 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         }
         return matDatas;
     }
+
     /**
      * Gets the squared distance.
+     *
      * @param pl1 Planetoid 1
      * @param pl2 Planetoid 2
-     * 
      * @return Distance
      */
     private int distanceSquared(Planetoid pl1, Planetoid pl2) {
@@ -511,11 +512,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
 
     /**
      * Returns a valid block type.
-     * 
+     * <p>
      * //@param randrandom generator to use
+     *
      * @param core if true, searching through allowed cores, otherwise allowed shells
-     * //@param heated if true, will not return a block that gives off heat
-     * 
+     *             //@param heated if true, will not return a block that gives off heat
      * @return Material
      */
     private Set<MaterialData> getBlockTypes(Random rand, boolean core, boolean noHeat) {
@@ -534,7 +535,7 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
                 retVal = dataList;
                 for (MaterialData d : dataList) {
                     if (noHeat) {
-                        if(d.getItemType() == null){//Not a Vanilla Material. Don't care.
+                        if (d.getItemType() == null) {//Not a Vanilla Material. Don't care.
                             continue;
                         }
                         switch (d.getItemType()) {
@@ -559,38 +560,38 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
         // TODO: figure out if it's our fault or MV's fault that this is not used...
         return new Location(world, 7, 78, 7);
     }
-    
+
     private final static int HASH_SHIFT = 19;
     private final static long HASH_SHIFT_MASK = (1L << HASH_SHIFT) - 1;
 
     /**
      * Returns the particular seed a Random should use for a position
-     *
+     * <p>
      * The meaning of the x, y and z coordinates can be determined by the
      * generator.
-     *
+     * <p>
      * This gives consistent results for world generation.
-     *
+     * <p>
      * The extra seed allows multiple Randoms to be returned for the same
      * position for use by populators and different stages of generation.
      *
      * @param world the World
-     * @param x the x coordinate
-     * @param z the z coordinate
-     * @return the seed 
+     * @param x     the x coordinate
+     * @param z     the z coordinate
+     * @return the seed
      */
     private static long getSeed(World world, int x, int z) {
-            long hash = world.getSeed();
-            hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK);
-            hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK) + x;
-            hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK);
-            hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK) + z;
+        long hash = world.getSeed();
+        hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK);
+        hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK) + x;
+        hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK);
+        hash += (hash << HASH_SHIFT) + (hash >> 64 - HASH_SHIFT & HASH_SHIFT_MASK) + z;
 
-            return hash;
+        return hash;
     }
 
     private void loadPlanetSettings() {
-        if(ID.equals("planets")) return;
+        if (ID.equals("planets")) return;
         try {
             YamlConfiguration config = new YamlConfiguration();
             config.load(new File(Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("Space")).getDataFolder(), "planets/" + ConfigHandler.getPlanetsFile(ID)));
@@ -603,11 +604,11 @@ public class PlanetsChunkGenerator extends ChunkGenerator {
             minShellSize = config.getInt("minShellSize", (Integer) SpaceConfig.Defaults.MIN_SHELL_SIZE.getDefault()); // Minimum shell thickness, should be at least 3
             floorBlock = Material.matchMaterial(Objects.requireNonNull(config.getString("floorBlock", (String) SpaceConfig.Defaults.FLOOR_BLOCK.getDefault())));// BlockID for the floor
         } catch (IOException ex) {
-            MessageHandler.debugPrint(Level.WARNING, "IOException when getting info for planets file for id "+ ID);
+            MessageHandler.debugPrint(Level.WARNING, "IOException when getting info for planets file for id " + ID);
         } catch (InvalidConfigurationException ex) {
-            MessageHandler.debugPrint(Level.WARNING, "InvalidConfigurationException when getting info for planets file for id "+ ID);
+            MessageHandler.debugPrint(Level.WARNING, "InvalidConfigurationException when getting info for planets file for id " + ID);
         } //Just use defaults if something goes wrong
-         //Just use defaults if something goes wrong
+        //Just use defaults if something goes wrong
 
     }
 }
